@@ -26,3 +26,5 @@ Things to improve:
 Ensuring people cannot enter the patient/admin pages without logging in first, workarounds include simply pasting the url into the browser.
 
 Making account creation more strict, and removing option to create admin accounts in the same way patient accounts are made since they should not be that accessible. Realistically, admin accounts should be provided to employees by developers.
+
+Currently appointment selecting page simply displays all appointments, even though user had to choose a doctor on the previous page. Would make more sense if it started off by filtering by that doctor specifically, but still give the user a clear option of disabling the filter.
