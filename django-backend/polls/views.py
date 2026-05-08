@@ -8,10 +8,11 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import models
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from django.utils import timezone
 import ast
+
+User = get_user_model()
 
 # Create your views here.
 CORS_ALLOW_ALL_ORIGINS = True
@@ -52,7 +53,7 @@ def create_user(request):
         password = data[1]
         acc_type = data[2]
 
-        user = User.objects.filter(username=username, account_type = acc_type).exists()
+        user = User.objects.filter(username=username, account_type=acc_type).exists()
         if user:
             print(f"account {username}, {password}, {acc_type} already in db")
             return JsonResponse({"status": "This username is already taken."})
@@ -61,17 +62,3 @@ def create_user(request):
         print(f"account {username}, {password}, {acc_type} created")
         return JsonResponse({"status": "ok"})
 
-class chat_history(models.Model):
-
-    account_choices = {
-        ("patient", "Patient"),
-        ("admin", "Admin")
-    }
-
-    username = models.CharField(max_length=20)
-    message = models.CharField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    account_type = models.CharField(choices=account_choices)
-
-    def __str__(self):
-        return self.username

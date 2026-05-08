@@ -16,8 +16,10 @@ export default function loginPage() {
     const [user, setUser] = React.useState("");
     const [pass, setPass] = React.useState("");
 
-    const [patientColor, setPatientColor] = React.useState("rgba(56, 56, 56, 0.767)");
-    const [adminColor, setAdminColor] = React.useState("rgba(56, 56, 56, 0.767)");
+    const unSelectedCol = "rgba(190, 190, 190, 0.77)"
+    const selectedCol = "#00a5ff"
+    const [patientColor, setPatientColor] = React.useState(unSelectedCol);
+    const [adminColor, setAdminColor] = React.useState(unSelectedCol);
 
     const [errMsg, setErrMsg] = React.useState("");
 
@@ -30,8 +32,15 @@ export default function loginPage() {
         .then(data => {
             
             if (data.status == "ok") {
-                router.push(`/booking?username=${encodeURIComponent(user)}`)
-                setErrMsg("")
+
+              if (accType == "patient") {
+                router.push(`/patient?username=${encodeURIComponent(user)}`)
+              }
+              else if (accType == "admin") {
+                router.push(`/admin?username=${encodeURIComponent(user)}`)
+              }
+              setErrMsg("")
+
             } else if (patientColor == adminColor) {
               setErrMsg("Please select whether you are a patient or an admin.")
             } else {
@@ -55,11 +64,11 @@ export default function loginPage() {
 
     const handleLogin = () => {
 
-      if (patientColor == "rgb(82, 82, 82)") {
+      if (patientColor == selectedCol) {
         postAcc(user, pass, "patient") //send acc to backend, return status code
       }
       
-      else if (adminColor == "rgb(82, 82, 82)") {
+      else if (adminColor == selectedCol) {
         postAcc(user, pass, "admin") //send acc to backend, return status code
       }
     };
@@ -67,13 +76,13 @@ export default function loginPage() {
     const handleColour = (key: string) => {
 
       if (key == "patient-button") {
-        setPatientColor("rgb(82, 82, 82)");
-        setAdminColor("rgba(56, 56, 56, 0.767)");
+        setPatientColor(selectedCol);
+        setAdminColor(unSelectedCol);
       }
 
       else if (key == "admin-button") {
-        setAdminColor("rgb(82, 82, 82)");
-        setPatientColor("rgba(56, 56, 56, 0.767)");
+        setAdminColor(selectedCol);
+        setPatientColor(unSelectedCol);
       }
         
     };

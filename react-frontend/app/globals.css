@@ -1,12 +1,20 @@
 @import "tailwindcss";
 
+/*
+  background: rgb(255, 255, 255);
+  primary: #71fcff;
+  secondary: rgba(190, 190, 190, 0.77)";
+  accent: "#00a5ff";
+  text: black;
+*/
+
 :root {
   --x: 15%;
 }
 
 html, body {
-  background: rgb(17, 17, 17);
-  color: white;
+  background: rgb(255, 255, 255);
+  color: black;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
@@ -17,9 +25,8 @@ html, body {
 }
 
 /*login CSS start*/
-/*color: rgba(56, 56, 56, 0.767)*/
 .loginMain {  
-  background-color: rgba(56, 56, 56, 0.767);
+  background-color: #71fcff;
   height: 40%;  
   width: 30%;
   display: flex;
@@ -28,7 +35,7 @@ html, body {
   justify-content: center;
   border-radius: 10px;
   align-self: center;
-  margin-top: 17%;
+  margin-top: 15%;
 }
 
 .login-title {
@@ -50,11 +57,11 @@ html, body {
 
 .login-input {
   width: 80%;
-  height: 13%;
-  border: 1px solid white;
+  height: 13%;  
   border-radius: 20px;
-  margin-bottom: 2%;
+  margin-bottom: 2%;  
   padding-left: 5%;
+  background-color: #ffffff;
 }
 
 .login-account-type-contain {
@@ -62,32 +69,30 @@ html, body {
     height: 12%;
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 .login-patient {
     width: 15%;
     height: 100%;
     border-radius: 20px;
-    border: 1px solid white;
 }
 
 .login-admin {
     width: 15%;
     height: 100%;
     border-radius: 20px;
-    border: 1px solid white;
 }
 
 .login-button {
   width: 80%;
   height: 13%;
-  background-color: rgb(82, 82, 82);
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
 }
 
 .login-button:active {
-  background-color: rgba(77, 77, 77, 0.767)
+  background-color: rgba(190, 190, 190, 0.77);
 }
 
 .login-link-container {
