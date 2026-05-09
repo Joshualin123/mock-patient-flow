@@ -47,13 +47,17 @@ export default function loginPage() {
 
         if (pass.trim() == repass.trim()) { //if passwords match
             if (pass.trim().length >= 10) { //only post if min length
-                if (patientColor == "rgb(82, 82, 82)") {
+                if (patientColor == "#00a5ff") {
                     postAcc(user, pass, "patient") //send acc to backend, return status code
+                    return;
                 }
                 
-                else if (adminColor == "rgb(82, 82, 82)") {
+                else if (adminColor == "#00a5ff") {
                     postAcc(user, pass, "admin") //send acc to backend, return status code
+                    return;
                 }
+                //if neither selected:
+                setErrMsg("Please choose an account type.");
             } else {
                 setErrMsg("Password too short.");
                 return;

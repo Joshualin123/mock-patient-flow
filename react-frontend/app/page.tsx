@@ -24,8 +24,8 @@ export default function loginPage() {
 
     const postAcc = (user : string, pass : string, accType : string) => {
         fetch("http://localhost:8000/polls/authenticate-user/", {
-            method: "POST",
-            body: JSON.stringify([user, pass, accType])
+          method: "POST",
+          body: JSON.stringify([user, pass, accType])
         })
         .then(res => res.json())
         .then(data => {
