@@ -249,3 +249,40 @@ html, body {
 }
 
 /*nav bar styling end*/
+
+/*dropdown css START*/
+
+.dropContain {
+    align-self: flex-start;
+    background-color: white;
+    margin-bottom: 1%;
+    width: 22%; 
+    position: relative;
+}
+
+.dropButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.dropArrow {
+    width: 15%;
+}
+
+.dropMenu {
+    position: absolute;
+    z-index: 50;
+    width: 100%;
+}
+
+.dropOptionContain {
+    position: relative;
+    z-index: 50;
+    background-color: white;
+}
+
+/*dropdown css END*/

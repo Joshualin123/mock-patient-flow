@@ -7,52 +7,112 @@ import { useRouter } from "next/navigation";
 import { Router } from 'next/router';
 import styles from './admin.module.css'
 import {useState} from 'react'
-import DatePicker from "react-datepicker";
-import type { DatePickerProps } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function adminPage() {
+
+    type Appointment = {
+        patient: string;
+        startTime: string;
+        endTime: string;
+        "Preferred Physician": string;
+        "Booking Status": string;
+    };
 
     const appointments = [
         {
             "patient": "Patient1",
             "startTime": "9am",
             "endTime": "10am",
-            "Phone Number": "123-456-7890",
+            "Preferred Physician": "Physician1",
             "Booking Status": "Confirmed"
         },
         {
             "patient": "Patient2",
             "startTime": "9am",
             "endTime": "10am",
-            "Phone Number": "123-456-7890",
+            "Preferred Physician": "Physician2",
             "Booking Status": "Confirmed"
         },
         {
             "patient": "Patient3",
             "startTime": "9am",
             "endTime": "10am",
-            "Phone Number": "123-456-7890",
+            "Preferred Physician": "Physician3",
             "Booking Status": "Pending"
         },
         {
             "patient": "Patient4",
             "startTime": "9am",
             "endTime": "10am",
-            "Phone Number": "123-456-7890",
+            "Preferred Physician": "Physician2",
             "Booking Status": "Confirmed"
         },
         {
             "patient": "Patient5",
             "startTime": "9am",
             "endTime": "10am",
-            "Phone Number": "123-456-7890",
+            "Preferred Physician": "Physician1",
             "Booking Status": "Cancelled"
         }
     ]
 
+    const [currAppointment, setCurrAppointment] = React.useState<Appointment | null>(null)
+
+    const [selectedPhysician, setSelectedPhysician] = useState('Select Physician');
+    const [isOpen, setIsOpen] = useState(false);
+    const physicians = ['Physician1', 'Physician2', 'Physician3'];
+
+    const Dropdown = () => {
+
+        const toggleDropdown = () => {
+            setIsOpen(!isOpen);
+        };
+
+        const handleSelect = (physician: string) => {
+            setSelectedPhysician(physician);
+            setIsOpen(false);
+        };
+
+        return (
+            <div className='dropContain'>
+                <div className={"inline-block text-left"}>
+                    {/* Dropdown button */}
+                    <button
+                        type="button"
+                        className='dropButton'
+                        onClick={toggleDropdown}    
+                    >
+                        {selectedPhysician}
+
+                        <img src='./dropdown.jpg' className='dropArrow'></img>
+                    </button>
+
+                    {/* Dropdown menu */}
+                    {isOpen && (
+                        <div className='dropMenu'>
+                            <div className='dropOptionContain'>
+                                {physicians.map((physician, idx) => (
+                                    <a
+                                        key={idx}
+                                        href="#"
+                                        className="block px-4 py-2
+                                                text-sm text-black
+                                                hover:bg-gray-100 z-50"
+                                        onClick={() => handleSelect(physician)}
+                                    >
+                                        {physician}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
     const [showForm, toggleForm] = useState(false)
-    const [dob, setDob] = useState<Date | null>(null); 
 
     const form = () => { 
 
@@ -120,19 +180,26 @@ export default function adminPage() {
         <main className="pageMain">
             <div className="pageNavBar"></div>
 
-            {showForm && form()}
+            {showForm && currAppointment && currAppointment?.["Booking Status"] === "Confirmed" && form()}
+
             <div className={styles.adminInfo}>
 
                 <div className={styles.adminColumn}>
-                    {appointments.map((appointment, idx) => (
-                        <div key={idx} className={styles.admin}>
-                            <div className={styles.adminPatient}>{appointment["patient"]}</div>
-                            <div className={styles.adminTime}>Time: {appointment["startTime"]} to {appointment["endTime"]}</div>
-                            <div className={styles.adminPatientNum}>Phone Number: {appointment["Phone Number"]}</div>
-                            <div className={styles.adminStatus}>Booking Status: {appointment["Booking Status"]}</div>
-                            <button className={styles.adminBookButton} onClick={() => toggleForm(true)}>View Patient Form</button>
-                        </div>
-                    ))}
+
+                    <div className={styles.adminColInner}>
+                        {Dropdown()}
+
+                        {appointments.filter(appointment => appointment["Preferred Physician"] == selectedPhysician).map((appointment, idx) => (
+                            
+                            <div key={idx} className={styles.admin} style={{backgroundColor: appointment["Booking Status"] === "Confirmed" ? "#92ffaa" : appointment["Booking Status"] === "Cancelled" ? "#ff9494" : "white"}}>
+                                <div className={styles.adminPatient}>{appointment["patient"]}</div>
+                                <div className={styles.adminTime}>Time: {appointment["startTime"]} to {appointment["endTime"]}</div>
+                                <div className={styles.adminPrefPhysician}>Preferred Physician: {appointment["Preferred Physician"]}</div>
+                                <div className={styles.adminStatus}>Booking Status: {appointment["Booking Status"]}</div>
+                                <button className={styles.adminViewForm} onClick={() =>{toggleForm(true); setCurrAppointment(appointment)}}>View Patient Form</button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 
             </div>

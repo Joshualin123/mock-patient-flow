@@ -98,6 +98,15 @@ export default function PatientPage() {
                         </div>
                     </div>
 
+
+                    <div className={styles.formIn} style={{height: '30%', width: '40%', alignSelf: "flex-start"}}>
+                        <div style={{display: "flex", flexDirection: "column", width: '100%', height: '100%'}}>
+                            Reason For Visit:
+                            <textarea placeholder="Enter your issues..." className={styles.formName}  style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', padding: '2% 2%'}}></textarea>
+                        </div>
+
+                    </div>
+
                     <button className={styles.formSubmit} onClick={handleSubmit}>Submit Form</button>
                 </div>
             </div>
