@@ -40,6 +40,20 @@ Viewing forms filled by patients who have registered for a time slot.
 
 Filter appointments, so physicians can easily see their own specific time slots.
 
+## Key Technical / Product Decisions:
+
+Chose a lighter color scheme to seem friendlier.
+
+Made patients and admins login from the same location for design simplicity, but still features security features to keep the patient and admin views separate. (Concerns on security are also addressed below in "Things To Improve", do consider that this is only a mock/prototype). 
+
+Added features with the intention of being as open as possible to users, referring to both patients and admins, such as physician descriptions and clear information on appointment dates/locations. The goal is to allow patients to be as confident and comfortable with their decisions as possible, and allow admins/physicians to get all the information they need about their patients so they can provide maximal assistance.
+
+Added simple color coding features to make some information more clear/intuitive, such as green/red color coding for confirmed/cancelled appointments respectively. 
+
+A standardized navigation bar exists at the top of each page, should any general info be needed to display.
+
+The patient form is made to allow users to provide all the information physicians/admins could need to prepare to help their patients.
+
 ## Things To Improve:
 Ensuring people cannot enter the patient/admin pages without logging in first, workarounds include simply pasting the url into the browser.
 
@@ -55,4 +69,5 @@ A feature for trading time slots with other physicians, or simply taking them, w
 
 Add place to write key issues for patients in the patient form.
 
+Add address/contact info to site.
 
