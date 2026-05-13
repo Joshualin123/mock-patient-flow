@@ -8,6 +8,7 @@ import styles from './patient.module.css';
 import useEmblaCarousel from 'embla-carousel-react'
 
 export function EmblaCarousel() {
+    
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false })
 
     const goToPrev = () => emblaApi?.scrollPrev()
@@ -67,10 +68,14 @@ export function EmblaCarousel() {
 
 export default function PatientPage() {
 
+    const router = useRouter()
+
     return(
         
         <main className="pageMain">
             <div className="pageNavBar">
+                <div className="pageNavInfoButton" onClick={() => router.push('./patient')}>Home</div>
+                <div className="pageNavInfoButton" onClick={() => router.push('./contact')}>Contact Us</div>
             </div>
             <div className={styles.patientInfoContain}>
                 <div className={styles.patientPhysicians}>

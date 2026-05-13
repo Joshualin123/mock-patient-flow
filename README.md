@@ -18,6 +18,8 @@ Next, in another terminal, change directory to django-backend by running:
 
 cd django-backend
 
+venv/scripts/activate
+
 Then run:
 
 python manage.py runserver
@@ -61,13 +63,11 @@ Making account creation more strict, and removing option to create admin account
 
 All appointments in patient and admin views are stubbed since this is only a mock, therefore no real data is being used. If there was, functionality to synchronize the patient and admin views would be added. (Example: patient booking an appointment would update status on admin view).
 
-The navigation bar, which pretty much every site has, is empty since there is nothing that needs to be put there.
+The navigation bar, which pretty much every site has, is empty since there is nothing that needs to be put there as it is only a prototype.
 
 The styling is really ugly and bare minimum.
 
 A feature for trading time slots with other physicians, or simply taking them, would be useful. This would require the physicians themselves to coordinate externally.
-
-Add place to write key issues for patients in the patient form.
 
 Add address/contact info to site.
 

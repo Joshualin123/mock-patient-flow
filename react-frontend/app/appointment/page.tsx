@@ -72,7 +72,7 @@ export default function PatientPage() {
 
         return (
             <div className='dropContain'>
-                <div className={"inline-block text-left"}>
+                <div className={" text-left"}>
                     {/* Dropdown button */}
                     <button
                         type="button"
@@ -111,7 +111,11 @@ export default function PatientPage() {
     return(
         
         <main className="pageMain">
-            <div className="pageNavBar"></div>
+
+            <div className="pageNavBar">
+                <div className="pageNavInfoButton" onClick={() => router.push('./patient')}>Home</div>
+                <div className="pageNavInfoButton">Contact Us</div>
+            </div>
 
             <div className={styles.appointmentInfo}>
 

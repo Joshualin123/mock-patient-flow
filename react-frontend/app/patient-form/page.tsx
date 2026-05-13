@@ -1,19 +1,14 @@
 "use client";
 
-import * as React from 'react'
-import Link from 'next/link'
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Router } from 'next/router';
 import styles from './patient-form.module.css';
-import useEmblaCarousel from 'embla-carousel-react'
-import { useSearchParams } from "next/navigation";
 import DatePicker from "react-datepicker";
-import type { DatePickerProps } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 
 export default function PatientPage() {
+
+    const router = useRouter()
     
     const [dob, setDob] = useState<Date | null>(null);  
     const [zIdx, setZIndex] = useState(-1)
@@ -29,7 +24,10 @@ export default function PatientPage() {
     return(
         
         <main className="pageMain">
-            <div className="pageNavBar"></div>
+            <div className="pageNavBar">
+                <div className="pageNavInfoButton" onClick={() => router.push('./patient')}>Home</div>
+                <div className="pageNavInfoButton">Contact Us</div>
+            </div>
             
             <div className={styles.formConfirmPopUp} style={{zIndex: zIdx}}>
                 <button onClick={closePopUp} className={styles.formPopUpExit} style={{zIndex: zIdx}}>X</button>
